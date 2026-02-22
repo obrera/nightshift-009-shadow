@@ -3,11 +3,17 @@ services:
     image: beeman/static-server:latest
     volumes:
       - ./dist:/workspace/app:ro
-    ports:
-      - "9886:9876"
     environment:
       - SPA=true
+    networks:
+      - dokploy-network
   www:
     image: beeman/static-server:latest
     environment:
       - REDIRECT_URL=https://shadow.colmena.dev
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
