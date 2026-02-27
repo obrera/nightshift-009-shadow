@@ -1,9 +1,11 @@
 services:
   web:
+    restart: unless-stopped
     build: .
     networks:
       - dokploy-network
   www:
+    restart: unless-stopped
     image: beeman/static-server:latest
     environment:
       - REDIRECT_URL=https://shadow.colmena.dev
